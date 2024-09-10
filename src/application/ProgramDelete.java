@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.DB;
+import db.DbIntegrityException;
 
 public class ProgramDelete {
 
@@ -22,7 +23,7 @@ public class ProgramDelete {
 				    "WHERE " +
 					"Id = ?");
 			
-			
+			st.setInt(1, 2);
 
 			//Lembrando que o método executeUpdate() me retorna um inteiro com
 			//o número de linhas afetadas
@@ -31,7 +32,7 @@ public class ProgramDelete {
 			System.out.println("Feito! " + rowsAffected + " linhas afetadas");
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			throw new DbIntegrityException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
