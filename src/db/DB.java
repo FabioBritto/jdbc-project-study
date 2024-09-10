@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
@@ -67,6 +69,28 @@ public class DB {
 			//A minha DbException deriva de RUNTIMEEXCEPTION, então meu programa não precisará ficar colocando TRY CATCH toda hora, só quando necessário
 			//Além disso, posso ter uma Exceção Personalizada
 			throw new DbException(e.getMessage());
+		}
+	}
+	
+	public static void closeStatement(Statement st) {
+		if(st != null) {
+			try {
+				st.close();
+			}
+			catch(SQLException e) {
+				throw new DbException(e.getMessage());
+			}
+		}
+	}
+	
+	public static void closeRestultSet(ResultSet rs) {
+		if(rs != null) {
+			try {
+				rs.close();
+			}
+			catch(SQLException e) {
+				throw new DbException(e.getMessage());
+			}
 		}
 	}
 }
