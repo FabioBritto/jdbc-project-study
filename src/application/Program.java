@@ -12,6 +12,9 @@ public class Program {
 
 	public static void main(String[] args) {
 		
+		/*
+		 * ----------------------------TRABALHANDO COM RECUPERAÇÃO DE DADOS -----------------------
+		 */
 		//Objeto pra Conexão do Banco
 		Connection conn = null;
 		//Objeto pra realizar a busca no banco de dados
